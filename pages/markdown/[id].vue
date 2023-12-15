@@ -9,7 +9,7 @@ definePageMeta({
     (to) => {
       const id = to.params.id;
 
-      const paramSchema = string([uuid("Markdown is not valid dude. Sorry about that.")]);
+      const paramSchema = string([uuid("Markdown is not valid.")]);
 
       try {
         parse(paramSchema, id);
@@ -27,9 +27,10 @@ const route = useRoute("markdown-id");
 
 const markdownId = route.params.id;
 
-const { isSuccess, data, isLoading, isPaused } = useQuery({
-  retry: 0,
-  queryKey: ["markdown", { id: markdownId }],
+const { data, isLoading, isSuccess } = useQuery({
+  queryKey: ['markdown', markdownId],
+  queryHash: `markdown:${markdownId}`,
+  staleTime: 0,
   queryFn: async () => {
     const response = await getMarkdown({
       id: markdownId,
@@ -46,23 +47,14 @@ const { isSuccess, data, isLoading, isPaused } = useQuery({
   },
 });
 
-watch(isSuccess, () => store.$patch({ markdown: data.value?.data as Markdown }));
+
+
+watch(isSuccess, () => {
+  store.$patch({markdown:data.value?.data as Markdown})
+}, { immediate: true })
 </script>
 
 <template>
-  <UAlert v-if="isPaused" title="Unable to fetch Markdown content" color="red" variant="soft"
-    icon="i-heroicons-exclamation-circle"
-    description="We encountered an issue while trying to retrieve Markdown content. This could be due to various reasons, such as network problems, insufficient permissions, or an error on the server side."
-    class="my-12" />
-  <EditorToolbar />
-  <div class="mx-4">
-    <MarkdownDocumentTitle :loading="isLoading" :title="(data?.data?.title as string) || ''" />
-    <NuxtErrorBoundary>
-      <EditorSkeleton v-if="isLoading" />
-      <Editor v-else />
-      <template #error="{ error }">
-        {{ error }}
-      </template>
-    </NuxtErrorBoundary>
-  </div>
+    <EditorSkeleton v-if="isLoading" />
+    <Editor v-else />
 </template>
