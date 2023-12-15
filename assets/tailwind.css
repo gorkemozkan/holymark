@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply min-h-screen flex flex-col relative dark:bg-zinc-950;
+  }
+}
+
+@layer components {
+  .auth-form {
+    @apply space-y-8;
+  }
+
+  .profile-form {
+    @apply max-w-2xl space-y-8;
+  }
+}
