@@ -2,11 +2,13 @@
 type Action = "update" | "delete" | "save" | "print" | "create";
 
 interface Props {
-  markdown: Markdown;
   actions: Action[];
 }
 
 defineProps<Props>();
+
+const store = useMarkdownStore();
+
 
 const components: Record<Action, any> = {
   save: resolveComponent("MarkdownSaveButton"),
@@ -20,7 +22,7 @@ const components: Record<Action, any> = {
 <template>
   <div class="flex space-x-2 w-full items-center">
     <div v-for="(action, idx) in actions" :key="idx">
-      <component :is="components[action]" :markdown="markdown" />
+      <component :is="components[action]" :markdown="store.markdown" />
     </div>
   </div>
 </template>
