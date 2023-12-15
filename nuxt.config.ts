@@ -32,7 +32,8 @@ export default defineNuxtConfig({
 		"/": { prerender: true },
 		"/auth/**": { prerender: true },
 		"/dashboard": { ssr: false },
-		"/markdown/**": { ssr: false }
+		"/markdown/**": { ssr: false },
+		"/changelog/**": { ssr: false },
 	},
 	router: {
 		options: {
