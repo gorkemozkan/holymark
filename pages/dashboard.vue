@@ -5,10 +5,9 @@ definePageMeta({
 </script>
 
 <template>
-  <PageTitle title="Welcome back ✨" />
-   <div class="flex justify-between items-center">
-      <SectionTitle title="Markdowns" />
-      <MarkdownCreateButton />
-    </div>
-  <MarkdownTable :keys="['title','actions']"/>
+  <div class="flex justify-between items-center">
+    <SectionTitle title="Markdowns" />
+    <MarkdownCreateButton />
+  </div>
+  <MarkdownTable />
 </template>
