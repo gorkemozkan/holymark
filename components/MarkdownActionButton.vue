@@ -14,18 +14,17 @@ const emit = defineEmits<{
 }>();
 
 withDefaults(defineProps<Props>(), {
-  color: "teal",
-  variant: "solid",
+  color: "zinc",
+  variant: "ghost",
 });
-
-const colorMode = useColorMode();
 </script>
 
 <template>
   <UTooltip :popper="{ placement: 'top' }" :shortcuts="shortcuts">
     <UButton
       variant="ghost"
-      size="lg"
+      class="text-white"
+      size="xl"
       :to="to"
       :color="color"
       :disabled="disabled"
