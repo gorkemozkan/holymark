@@ -1,5 +1,5 @@
 <template>
-  <main class="mb-72">
+  <main>
     <slot />
   </main>
 </template>
