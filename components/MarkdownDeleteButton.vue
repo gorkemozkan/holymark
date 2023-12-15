@@ -54,7 +54,7 @@ function handleRemove() {
 </script>
 
 <template>
-  <MarkdownActionButton color="red" hint="Delete Markdown" icon="i-heroicons-trash" @click="handleClick" />
+  <MarkdownActionButton hint="Delete Markdown" icon="i-heroicons-trash" @click="handleClick" />
   <Modal
     title="Are you sure about that?"
     description="This markdown will be deleted and cannot be restored."
