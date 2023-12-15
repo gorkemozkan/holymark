@@ -2,16 +2,7 @@
 import { useQuery } from "@tanstack/vue-query";
 import { getMarkdowns } from "~/lib/services/markdowns";
 
-type keys = 'title' | 'actions'
-
-interface Props {
-  keys: keys[]
-}
-
-const props = defineProps<Props>()
-
 const router = useRouter();
-
 
 const columns = [
   {
@@ -51,7 +42,6 @@ function handleTableSelect(row: Markdown) {
     <UTable @select="handleTableSelect" :columns="columns" :rows="data" :loading="isLoading" :loading-state="{
       icon: 'i-heroicons-arrow-path-20-solid',
       label: 'Hold tight! Loading...',
-    }"/>
-
+    }" />
   </div>
 </template>
